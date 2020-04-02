@@ -1,0 +1,36 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Rest API for Route Rating.
+Metadata:
+  AWS::ServerlessRepo::Application:
+    Name: rest-api-gyms
+    Description: Rest API for Route Rating.
+    Author: Luke Shay
+    ReadmeUrl: s3://route-rating-api-gyms-builds/route-rating-api-gyms/923273f54696491c659ae4b8339b318f
+    HomePageUrl: https://lukeshay.com
+    SemanticVersion: 0.0.1
+    SourceCodeUrl: https://github.com/LukeShay/route-rating-rest-api
+    private: true
+Resources:
+  GymsApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: com.routerating.api.GymsHandler::handleRequest
+      Runtime: java11
+      CodeUri: s3://route-rating-api-gyms-builds/route-rating-api-gyms/fbb31bbb5192865d45afdc6cb47f23c3
+      MemorySize: 1024
+      Policies: AWSLambdaBasicExecutionRole
+      Timeout: 120
+      Events:
+        GetResource:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: any
+Outputs:
+  GymsApi:
+    Description: URL for application
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod
+    Export:
+      Name: GymsApi

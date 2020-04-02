@@ -1,0 +1,14 @@
+apply plugin: 'org.springframework.boot'
+
+archivesBaseName = 'gyms'
+
+dependencies {
+    implementation project(':common')
+
+    // Spring
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: project.springBootVersion
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: project.springBootVersion
+
+    // AWS
+    implementation group: 'com.amazonaws', name: 'aws-java-sdk-s3', version: '1.11.756'
+}

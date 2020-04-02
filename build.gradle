@@ -1,0 +1,83 @@
+plugins {
+    id 'org.springframework.boot' version '2.2.6.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'java'
+    id 'application'
+}
+
+mainClassName = 'com.routerating.api.Application'
+
+ext {
+    junitJupiterVersion = '5.6.1'
+    jacksonCoreVersion = '2.11.0.rc1'
+    springBootVersion = '2.2.6.RELEASE'
+    jjwtVersion = '0.11.1'
+}
+
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'io.spring.dependency-management'
+
+    version = '0.0.1'
+    group = 'com.routerating.api'
+
+    sourceCompatibility = 11
+    targetCompatibility = 11
+
+    repositories {
+        mavenCentral()
+    }
+
+    task buildZip(type: Zip) {
+        from compileJava
+        from processResources
+        into('lib') {
+            from(configurations.compileClasspath) {
+                exclude 'tomcat-embed-*'
+            }
+        }
+    }
+}
+
+subprojects {
+    dependencies {
+        // Spring
+        implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: project.springBootVersion
+
+        // Database
+        implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.12'
+
+        // JUnit Jupiter
+        testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: project.junitJupiterVersion
+        testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: project.junitJupiterVersion
+
+        // Test
+        testImplementation group: 'org.mockito', name: 'mockito-core', version: '3.3.3'
+        testImplementation group: 'com.h2database', name: 'h2', version: '1.4.200'
+
+        // Google
+        implementation group: 'com.google.code.gson', name: 'gson', version: '2.8.6'
+
+        // AWS
+        implementation group: 'com.amazonaws.serverless', name: 'aws-serverless-java-container-springboot2', version: '1.4'
+        implementation group: 'com.amazonaws', name: 'aws-lambda-java-log4j', version: '1.0.0'
+
+        // JWT
+        implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: project.jjwtVersion
+        implementation group: 'io.jsonwebtoken', name: 'jjwt-impl', version: project.jjwtVersion, {
+            exclude group: 'io.jsonwebtoken', module: 'jjwt-api'
+        }
+        implementation group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: project.jjwtVersion, {
+            exclude group: 'io.jsonwebtoken', module: 'jjwt-api'
+        }
+    }
+
+    test {
+        useJUnitPlatform()
+
+    }
+
+    build.finalizedBy(buildZip)
+}
+
+
