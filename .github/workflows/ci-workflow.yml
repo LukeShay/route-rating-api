@@ -30,3 +30,4 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-2
       - run: pip3 install --user aws-sam-cli
+      - run: ./scripts/run.sh deploy-all
