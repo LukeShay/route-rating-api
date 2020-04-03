@@ -17,14 +17,12 @@ package() {
 
     rm output.yml &> /dev/null || ignore
 
-    sam package \
+    dots sam package \
       --template-file template.yml \
       --s3-bucket "${1}-builds" \
       --s3-prefix "${1}" \
       --output-template-file output.yml \
-      --region us-east-2 &> /dev/null &
-
-    dots $!
+      --region us-east-2
   fi
 }
 
@@ -32,15 +30,13 @@ deploy() {
   if [[ "${SKIP_DEPLOY}" != "TRUE" ]]; then
     printf "Deploying %s" ${1}
 
-    sam deploy \
+    dots sam deploy \
       --s3-bucket "${1}-builds" \
       --template-file output.yml \
       --region us-east-2 \
       --no-confirm-changeset \
       --stack-name "${1}" \
-      --capabilities CAPABILITY_IAM &> /dev/null &
-
-    dots $!
+      --capabilities CAPABILITY_IAM
   fi
 }
 
@@ -68,19 +64,17 @@ update-env() {
         sed 's/ //g'
     ) \
     && \
-    aws lambda \
+    dots aws lambda \
       update-function-configuration \
       --function-name "${FUNCTION_NAME}" \
-      --environment "Variables=${ENV_VARS}" &> /dev/null &
-
-    dots $!
+      --environment "Variables=${ENV_VARS}"
   fi
 }
 
 deploy-service() {
-    printf "Starting deploy for service %s\n" ${1}
+    printf "Starting deploy for service %s\n" "${1}"
 
-    FUNCTION="${FUNCTION_PREFIX}${1}"
+    FUNCTION=$(service-name "${1}")
 
     cd "${PROJECT_DIR}/${1}"
 
@@ -94,9 +88,7 @@ build() {
     printf "Building services"
 
     find . -name build -type d | xargs rm -r || ignore
-    ./gradlew clean build &> /dev/null &
-
-    dots $!
+    dots ./gradlew clean build
   fi
 }
 

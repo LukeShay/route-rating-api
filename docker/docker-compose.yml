@@ -1,0 +1,60 @@
+version: '3.5'
+
+x-service-args: &service-args
+  restart: always
+  working_dir: /app
+  environment:
+    - REST_API_DB_URL=jdbc:postgresql://postgres:5432/routerating
+    - REST_API_DB_PASSWORD=password
+  depends_on:
+    - postgres
+  links:
+    - postgres
+
+services:
+  postgres:
+    image: postgres
+    container_name: route-rating-api-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: routerating
+    volumes:
+      - ./db-data:/var/lib/postgresql/data
+    ports:
+      - 5433:5432
+
+  users-service:
+    <<: *service-args
+    image: lukeshaydocker/route-rating-api-users:latest
+    container_name: route-rating-api-users
+    ports:
+      - 5000:8080
+
+  gyms-service:
+    <<: *service-args
+    image: lukeshaydocker/route-rating-api-gyms:latest
+    container_name: route-rating-api-gyms
+    ports:
+      - 5001:8080
+
+  ratings-service:
+    <<: *service-args
+    image: lukeshaydocker/route-rating-api-ratings:latest
+    container_name: route-rating-api-ratings
+    ports:
+      - 5002:8080
+
+  walls-service:
+    <<: *service-args
+    image: lukeshaydocker/route-rating-api-walls:latest
+    container_name: route-rating-api-walls
+    ports:
+      - 5003:8080
+
+  routes-service:
+    <<: *service-args
+    image: lukeshaydocker/route-rating-api-routes:latest
+    container_name: route-rating-api-routes
+    ports:
+      - 5004:8080

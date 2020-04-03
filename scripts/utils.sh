@@ -1,9 +1,11 @@
 #!/bin/bash -e
 
 dots() {
-  trap "kill ${1} 2> /dev/null" EXIT
+  eval ${@} &> /dev/null &
 
-  while kill -0 "${1}" 2> /dev/null; do
+  trap "kill ${!} 2> /dev/null" EXIT
+
+  while kill -0 "${!}" 2> /dev/null; do
       printf "."
       sleep 0.5
   done
@@ -15,4 +17,8 @@ dots() {
 
 ignore() {
   printf ""
+}
+
+service-name() {
+  printf "route-rating-api-%s" "${1}"
 }
