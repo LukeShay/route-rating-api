@@ -1,5 +1,15 @@
 #!/bin/bash -e
 
+PROJECT_DIR=${PWD}
+SERVICES=(
+  "gyms"
+  "routes"
+  "walls"
+  "users"
+  "ratings"
+)
+COMMIT=$(git rev-parse --short HEAD)$(git diff --quiet || echo ".uncommitted")
+
 dots() {
   eval ${@} &> /dev/null &
 
@@ -21,4 +31,19 @@ ignore() {
 
 service-name() {
   printf "route-rating-api-%s" "${1}"
+}
+
+build() {
+  if [[ "${SKIP_BUILD}" != "TRUE" ]]; then
+    printf "Building services"
+
+    find . -name build -type d | xargs rm -r || ignore
+    dots ./gradlew clean build
+  fi
+}
+
+for-each-service() {
+  for service in "${SERVICES[@]}"; do
+    eval "${1}" "${service}"
+  done
 }

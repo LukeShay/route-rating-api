@@ -139,3 +139,5 @@ gradle-app.setting
 output.yml
 
 .envrc
+
+docker/db-data

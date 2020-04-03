@@ -1,16 +1,5 @@
 #!/bin/bash -e
 
-EXIT_STATUS=0
-PROJECT_DIR=${PWD}
-SERVICES=(
-  "gyms"
-  "routes"
-  "walls"
-  "users"
-  "ratings"
-)
-FUNCTION_PREFIX="route-rating-api-"
-
 package() {
   if [[ "${SKIP_PACKAGE}" != "TRUE" ]]; then
     printf "Packaging %s" ${1}
@@ -83,21 +72,8 @@ deploy-service() {
     update-env "${FUNCTION}"
 }
 
-build() {
-  if [[ "${SKIP_BUILD}" != "TRUE" ]]; then
-    printf "Building services"
-
-    find . -name build -type d | xargs rm -r || ignore
-    dots ./gradlew clean build
-  fi
-}
-
 deploy-all() {
   build
-
-  for service in "${SERVICES[@]}"; do
-    deploy-service ${service}
-  done
-
+  for-each-service "deploy-service"
   printf "Successfully deployed all services!"
 }
