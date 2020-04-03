@@ -106,4 +106,6 @@ deploy-all() {
   for service in "${SERVICES[@]}"; do
     deploy-service ${service}
   done
+
+  printf "Successfully deployed all services!"
 }

@@ -21,7 +21,6 @@ jobs:
     needs: [build]
     name: Lambda deploy
     steps:
-      - uses: actions/checkout@v2
       - uses: actions/download-artifact@v1
         with:
           name: repo
