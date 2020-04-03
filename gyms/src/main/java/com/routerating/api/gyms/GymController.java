@@ -1,5 +1,6 @@
 package com.routerating.api.gyms;
 
+import com.routerating.api.common.gyms.Gym;
 import com.routerating.api.common.utils.Annotations.*;
 import com.routerating.api.common.utils.BodyUtils;
 import com.routerating.api.common.utils.ResponseUtils;

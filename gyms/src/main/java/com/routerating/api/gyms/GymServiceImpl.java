@@ -1,6 +1,8 @@
 package com.routerating.api.gyms;
 
 import com.routerating.api.aws.AwsService;
+import com.routerating.api.common.gyms.Gym;
+import com.routerating.api.common.gyms.GymRepository;
 import com.routerating.api.common.user.User;
 import com.routerating.api.common.user.UserTypes;
 import com.routerating.api.common.utils.AuthenticationUtils;

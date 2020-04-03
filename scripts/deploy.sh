@@ -4,6 +4,10 @@ EXIT_STATUS=0
 PROJECT_DIR=${PWD}
 SERVICES=(
   "gyms"
+  "routes"
+  "walls"
+  "users"
+  "ratings"
 )
 FUNCTION_PREFIX="route-rating-api-"
 
@@ -11,7 +15,7 @@ package() {
   if [[ "${SKIP_PACKAGE}" != "TRUE" ]]; then
     printf "Packaging %s" ${1}
 
-    rm output.yml &> /dev/null
+    rm output.yml &> /dev/null || ignore
 
     sam package \
       --template-file template.yml \
@@ -89,8 +93,8 @@ build() {
   if [[ "${SKIP_BUILD}" != "TRUE" ]]; then
     printf "Building services"
 
-    find . -name build -type d | xargs rm -r && \
-    ./gradlew clean build -x bootJar &> /dev/null &
+    find . -name build -type d | xargs rm -r || ignore
+    ./gradlew clean build &> /dev/null &
 
     dots $!
   fi

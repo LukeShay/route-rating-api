@@ -1,0 +1,39 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Rest API for Route Rating.
+
+Metadata:
+  AWS::ServerlessRepo::Application:
+    Name: rest-api-users
+    Description: Rest API for Route Rating.
+    Author: Luke Shay
+    ReadmeUrl: README.md
+    HomePageUrl: https://lukeshay.com
+    SemanticVersion: 0.0.1
+    SourceCodeUrl: https://github.com/LukeShay/route-rating-api
+    private: true
+
+Resources:
+  UsersApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: com.routerating.api.UsersHandler::handleRequest
+      Runtime: java11
+      CodeUri: build/distributions/users-0.0.1.zip
+      MemorySize: 1024
+      Policies: AWSLambdaBasicExecutionRole
+      Timeout: 120
+      Events:
+        GetResource:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: any
+
+Outputs:
+  UsersApi:
+    Description: URL for application
+    Value: !Sub 'https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod'
+    Export:
+      Name: UsersApi
+

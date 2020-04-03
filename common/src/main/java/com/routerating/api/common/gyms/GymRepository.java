@@ -1,4 +1,4 @@
-package com.routerating.api.gyms;
+package com.routerating.api.common.gyms;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

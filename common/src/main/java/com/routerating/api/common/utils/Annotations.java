@@ -209,7 +209,7 @@ public class Annotations {
 	@Retention(RetentionPolicy.RUNTIME)
 	@RequestMapping(method = RequestMethod.POST)
 	@PreAuthorize("permitAll()")
-	public @interface UnuthPostMapping {
+	public @interface UnauthPostMapping {
 
 		@AliasFor(annotation = RequestMapping.class)
 		String name() default "";
@@ -268,6 +268,90 @@ public class Annotations {
 	@RequestMapping
 	@PreAuthorize("isAuthenticated()")
 	public @interface Controller {
+		@AliasFor(annotation = RequestMapping.class)
+		String name() default "";
+
+		@AliasFor(annotation = RequestMapping.class)
+		String[] value() default {};
+
+		@AliasFor(annotation = RequestMapping.class)
+		String[] path() default {};
+
+		@AliasFor(annotation = RequestMapping.class)
+		String[] params() default {};
+
+		@AliasFor(annotation = RequestMapping.class)
+		String[] headers() default {};
+
+		@AliasFor(annotation = RequestMapping.class)
+		String[] consumes() default {};
+
+		@AliasFor(annotation = RequestMapping.class)
+		String[] produces() default {};
+	}
+
+	@Target(ElementType.METHOD)
+	@Retention(RetentionPolicy.RUNTIME)
+	@RequestMapping(method = RequestMethod.DELETE)
+	@PreAuthorize("isAuthenticated()")
+	public @interface AuthDeleteMapping {
+
+		@AliasFor(annotation = RequestMapping.class)
+		String name() default "";
+
+		@AliasFor(annotation = RequestMapping.class)
+		String[] value() default {};
+
+		@AliasFor(annotation = RequestMapping.class)
+		String[] path() default {};
+
+		@AliasFor(annotation = RequestMapping.class)
+		String[] params() default {};
+
+		@AliasFor(annotation = RequestMapping.class)
+		String[] headers() default {};
+
+		@AliasFor(annotation = RequestMapping.class)
+		String[] consumes() default {};
+
+		@AliasFor(annotation = RequestMapping.class)
+		String[] produces() default {};
+	}
+
+	@Target(ElementType.METHOD)
+	@Retention(RetentionPolicy.RUNTIME)
+	@RequestMapping(method = RequestMethod.DELETE)
+	@PreAuthorize("permitAll()")
+	public @interface UnauthDeleteMapping {
+
+		@AliasFor(annotation = RequestMapping.class)
+		String name() default "";
+
+		@AliasFor(annotation = RequestMapping.class)
+		String[] value() default {};
+
+		@AliasFor(annotation = RequestMapping.class)
+		String[] path() default {};
+
+		@AliasFor(annotation = RequestMapping.class)
+		String[] params() default {};
+
+		@AliasFor(annotation = RequestMapping.class)
+		String[] headers() default {};
+
+		@AliasFor(annotation = RequestMapping.class)
+		String[] consumes() default {};
+
+		@AliasFor(annotation = RequestMapping.class)
+		String[] produces() default {};
+	}
+
+	@Target(ElementType.METHOD)
+	@Retention(RetentionPolicy.RUNTIME)
+	@RequestMapping(method = RequestMethod.DELETE)
+	@PreAuthorize("hasAuthority('ADMIN')")
+	public @interface AdminDeleteMapping {
+
 		@AliasFor(annotation = RequestMapping.class)
 		String name() default "";
 

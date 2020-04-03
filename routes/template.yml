@@ -1,23 +1,25 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: Rest API for Route Rating.
+
 Metadata:
   AWS::ServerlessRepo::Application:
-    Name: rest-api-gyms
+    Name: rest-api-routes
     Description: Rest API for Route Rating.
     Author: Luke Shay
-    ReadmeUrl: s3://route-rating-api-gyms-builds/route-rating-api-gyms/923273f54696491c659ae4b8339b318f
+    ReadmeUrl: README.md
     HomePageUrl: https://lukeshay.com
     SemanticVersion: 0.0.1
-    SourceCodeUrl: https://github.com/LukeShay/route-rating-rest-api
+    SourceCodeUrl: https://github.com/LukeShay/route-rating-api
     private: true
+
 Resources:
-  GymsApiFunction:
+  RoutesApiFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: com.routerating.api.GymsHandler::handleRequest
+      Handler: com.routerating.api.RoutesHandler::handleRequest
       Runtime: java11
-      CodeUri: s3://route-rating-api-gyms-builds/route-rating-api-gyms/fbb31bbb5192865d45afdc6cb47f23c3
+      CodeUri: build/distributions/routes-0.0.1.zip
       MemorySize: 1024
       Policies: AWSLambdaBasicExecutionRole
       Timeout: 120
@@ -27,10 +29,11 @@ Resources:
           Properties:
             Path: /{proxy+}
             Method: any
+
 Outputs:
-  GymsApi:
+  RoutesApi:
     Description: URL for application
-    Value:
-      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod
+    Value: !Sub 'https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod'
     Export:
-      Name: GymsApi
+      Name: RoutesApi
+

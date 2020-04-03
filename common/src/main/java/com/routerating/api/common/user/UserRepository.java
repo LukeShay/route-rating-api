@@ -1,5 +1,6 @@
 package com.routerating.api.common.user;
 
+import com.routerating.api.common.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

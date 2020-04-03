@@ -12,3 +12,7 @@ dots() {
 
   printf "\n"
 }
+
+ignore() {
+  printf ""
+}

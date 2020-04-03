@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="route-rating-api.route.main" target="11" />
+      <module name="route-rating-api.route.test" target="11" />
+      <module name="route-rating-api.service-gyms.main" target="11" />
+      <module name="route-rating-api.service-gyms.test" target="11" />
+      <module name="route-rating-api.service-walls.main" target="11" />
+      <module name="route-rating-api.service-walls.test" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

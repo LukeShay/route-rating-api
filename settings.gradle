@@ -8,4 +8,4 @@
  */
 
 rootProject.name = 'route-rating-api'
-include 'gyms', 'common'
+include 'gyms', 'common', 'users', 'walls', 'ratings', 'routes'

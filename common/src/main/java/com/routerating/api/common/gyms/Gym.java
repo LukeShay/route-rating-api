@@ -1,4 +1,4 @@
-package com.routerating.api.gyms;
+package com.routerating.api.common.gyms;
 
 import com.google.gson.annotations.Expose;
 import com.routerating.api.common.utils.Auditable;
