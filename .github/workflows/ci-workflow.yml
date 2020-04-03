@@ -25,9 +25,6 @@ jobs:
         with:
           name: repo
           path: .
-      - uses: actions/setup-python@v1
-        with:
-          python-version: '3.8'
       - uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}

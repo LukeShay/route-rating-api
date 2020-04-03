@@ -44,6 +44,7 @@ Resources:
       MemorySize: 1024
       Policies: AWSLambdaBasicExecutionRole
       Timeout: 120
+      Role: arn:aws:iam::816188110262:role/LambdaRole
       Events:
         GetResource:
           Type: Api
