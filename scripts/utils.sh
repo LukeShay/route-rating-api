@@ -47,3 +47,11 @@ for-each-service() {
     eval "${1}" "${service}"
   done
 }
+
+index() {
+  for i in "${!SERVICES[@]}"; do
+    if [[ "${SERVICES[$i]}" = "${1}" ]]; then
+      printf "%s" "${i}";
+    fi
+  done
+}

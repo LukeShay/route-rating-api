@@ -1,12 +1,16 @@
 package com.routerating.api.common.utils;
 
 import org.springframework.core.annotation.AliasFor;
+import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.lang.annotation.*;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 public class Annotations {
 	@Target(ElementType.METHOD)
@@ -31,7 +35,7 @@ public class Annotations {
 		String[] headers() default {};
 
 		@AliasFor(annotation = RequestMapping.class)
-		String[] consumes() default {};
+		String[] consumes() default {MediaType.APPLICATION_JSON_VALUE};
 
 		@AliasFor(annotation = RequestMapping.class)
 		String[] produces() default {};
@@ -59,7 +63,7 @@ public class Annotations {
 		String[] headers() default {};
 
 		@AliasFor(annotation = RequestMapping.class)
-		String[] consumes() default {};
+		String[] consumes() default {MediaType.APPLICATION_JSON_VALUE};
 
 		@AliasFor(annotation = RequestMapping.class)
 		String[] produces() default {};
@@ -87,7 +91,7 @@ public class Annotations {
 		String[] headers() default {};
 
 		@AliasFor(annotation = RequestMapping.class)
-		String[] consumes() default {};
+		String[] consumes() default {MediaType.APPLICATION_JSON_VALUE};
 
 		@AliasFor(annotation = RequestMapping.class)
 		String[] produces() default {};
@@ -115,7 +119,7 @@ public class Annotations {
 		String[] headers() default {};
 
 		@AliasFor(annotation = RequestMapping.class)
-		String[] consumes() default {};
+		String[] consumes() default {MediaType.APPLICATION_JSON_VALUE};
 
 		@AliasFor(annotation = RequestMapping.class)
 		String[] produces() default {};
@@ -143,7 +147,7 @@ public class Annotations {
 		String[] headers() default {};
 
 		@AliasFor(annotation = RequestMapping.class)
-		String[] consumes() default {};
+		String[] consumes() default {MediaType.APPLICATION_JSON_VALUE};
 
 		@AliasFor(annotation = RequestMapping.class)
 		String[] produces() default {};
@@ -171,7 +175,7 @@ public class Annotations {
 		String[] headers() default {};
 
 		@AliasFor(annotation = RequestMapping.class)
-		String[] consumes() default {};
+		String[] consumes() default {MediaType.APPLICATION_JSON_VALUE};
 
 		@AliasFor(annotation = RequestMapping.class)
 		String[] produces() default {};
@@ -199,7 +203,7 @@ public class Annotations {
 		String[] headers() default {};
 
 		@AliasFor(annotation = RequestMapping.class)
-		String[] consumes() default {};
+		String[] consumes() default {MediaType.APPLICATION_JSON_VALUE};
 
 		@AliasFor(annotation = RequestMapping.class)
 		String[] produces() default {};
@@ -227,7 +231,7 @@ public class Annotations {
 		String[] headers() default {};
 
 		@AliasFor(annotation = RequestMapping.class)
-		String[] consumes() default {};
+		String[] consumes() default {MediaType.APPLICATION_JSON_VALUE};
 
 		@AliasFor(annotation = RequestMapping.class)
 		String[] produces() default {};
@@ -284,7 +288,7 @@ public class Annotations {
 		String[] headers() default {};
 
 		@AliasFor(annotation = RequestMapping.class)
-		String[] consumes() default {};
+		String[] consumes() default {MediaType.APPLICATION_JSON_VALUE};
 
 		@AliasFor(annotation = RequestMapping.class)
 		String[] produces() default {};
@@ -312,7 +316,7 @@ public class Annotations {
 		String[] headers() default {};
 
 		@AliasFor(annotation = RequestMapping.class)
-		String[] consumes() default {};
+		String[] consumes() default {MediaType.APPLICATION_JSON_VALUE};
 
 		@AliasFor(annotation = RequestMapping.class)
 		String[] produces() default {};
@@ -340,7 +344,7 @@ public class Annotations {
 		String[] headers() default {};
 
 		@AliasFor(annotation = RequestMapping.class)
-		String[] consumes() default {};
+		String[] consumes() default {MediaType.APPLICATION_JSON_VALUE};
 
 		@AliasFor(annotation = RequestMapping.class)
 		String[] produces() default {};
@@ -368,7 +372,7 @@ public class Annotations {
 		String[] headers() default {};
 
 		@AliasFor(annotation = RequestMapping.class)
-		String[] consumes() default {};
+		String[] consumes() default {MediaType.APPLICATION_JSON_VALUE};
 
 		@AliasFor(annotation = RequestMapping.class)
 		String[] produces() default {};

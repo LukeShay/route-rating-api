@@ -43,7 +43,10 @@ public class APIFilter implements Filter {
 		response.setHeader("Access-Control-Allow-Credentials", "true");
 		response.setHeader("Access-Control-Allow-Methods", "POST, PUT, GET, DELETE, OPTIONS");
 		response.setHeader("Access-Control-Max-Age", "3600");
-		response.setHeader("Access-Control-Allow-Headers", "*");
+		response.setHeader(
+				"Access-Control-Allow-Headers",
+				"Authorization, Refresh, origin, content-type, accept, x-requested-with"
+		);
 
 		chain.doFilter(req, res);
 	}

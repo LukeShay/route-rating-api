@@ -2,7 +2,7 @@
 
 . ./scripts/new_service.sh
 . ./scripts/deploy.sh
-. ./scripts/docker.sh
+. ./scripts/local.sh
 . ./scripts/utils.sh
 
 help() {

@@ -25,9 +25,7 @@ Resources:
       Timeout: 120
       Role: arn:aws:iam::816188110262:role/LambdaRole
       Tags:
-        -
-          Key: "service"
-          Value: "gyms"
+        TAG1: Service gyms
       Events:
         GetResource:
           Type: Api

@@ -25,9 +25,7 @@ Resources:
       Timeout: 120
       Role: arn:aws:iam::816188110262:role/LambdaRole
       Tags:
-        -
-          Key: "service"
-          Value: "ratings"
+        TAG1: Service ratings
       Events:
         GetResource:
           Type: Api

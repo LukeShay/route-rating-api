@@ -55,7 +55,7 @@ update-env() {
     && \
     dots aws lambda \
       update-function-configuration \
-      --function-name "${FUNCTION_NAME}" \
+      --function-name "${FUNCTION_NAME//[$'\t\r\n ']}" \
       --environment "Variables=${ENV_VARS}"
   fi
 }
