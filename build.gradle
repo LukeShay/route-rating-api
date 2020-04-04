@@ -70,11 +70,6 @@ subprojects {
         implementation group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: project.jjwtVersion, {
             exclude group: 'io.jsonwebtoken', module: 'jjwt-api'
         }
-
-        // JSON
-        implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: project.jacksonCoreVersion
-        implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: project.jacksonCoreVersion
-        implementation group: 'org.codehaus.jackson', name: 'jackson-mapper-asl', version: '1.9.13'
     }
 
     test {

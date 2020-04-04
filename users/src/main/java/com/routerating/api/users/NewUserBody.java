@@ -6,9 +6,26 @@ import com.routerating.api.common.utils.ModelUtils;
 
 public class NewUserBody extends User {
 
-	@Expose private String recaptcha;
+	@Expose
+	private String recaptcha;
 
-	NewUserBody() {
+	public NewUserBody() {
+	}
+
+	public NewUserBody(
+		String username,
+		String firstName,
+		String lastName,
+		String email,
+		String phoneNumber,
+		String city,
+		String state,
+		String country,
+		String password,
+		String recaptcha
+	) {
+		super(username, firstName, lastName, email, phoneNumber, city, state, country, password);
+		this.recaptcha = recaptcha;
 	}
 
 	public NewUserBody(User user, String recaptcha) {

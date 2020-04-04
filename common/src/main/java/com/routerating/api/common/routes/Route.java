@@ -1,11 +1,11 @@
 package com.routerating.api.common.routes;
 
 import com.google.gson.annotations.Expose;
+import com.routerating.api.common.routes.RouteProperties.Grade;
 import com.routerating.api.common.utils.Auditable;
 import com.routerating.api.common.utils.ModelUtils;
 import com.routerating.api.common.walls.WallProperties.WallTypes;
 import org.hibernate.annotations.GenericGenerator;
-import com.routerating.api.common.routes.RouteProperties.Grade;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -17,24 +17,45 @@ import java.util.Objects;
 @Table(name = "routes")
 public class Route extends Auditable<String> implements Serializable {
 
-	@Column(name = "id", unique = true, updatable = false) @Expose @GeneratedValue(generator = "pg-uuid")
-	@GenericGenerator(name = "pg-uuid", strategy = "org.hibernate.id.UUIDGenerator") @Id private String id;
+	@Column(name = "id", unique = true, updatable = false)
+	@Expose
+	@GeneratedValue(generator = "pg-uuid")
+	@GenericGenerator(name = "pg-uuid", strategy = "org.hibernate.id.UUIDGenerator")
+	@Id
+	private String id;
 
-	@Column(name = "wall_id", updatable = false) @Expose private String wallId;
+	@Column(name = "wall_id", updatable = false)
+	@Expose
+	private String wallId;
 
-	@Column(name = "gym_id", updatable = false) @Expose private String gymId;
+	@Column(name = "gym_id", updatable = false)
+	@Expose
+	private String gymId;
 
-	@Column(name = "name") @Expose private String name;
+	@Column(name = "name")
+	@Expose
+	private String name;
 
-	@Column(name = "setter") @Expose private String setter;
+	@Column(name = "setter")
+	@Expose
+	private String setter;
 
-	@Column(name = "hold_color") @Expose private String holdColor;
+	@Column(name = "hold_color")
+	@Expose
+	private String holdColor;
 
-	@Column(name = "types") @ElementCollection(fetch = FetchType.EAGER) @Expose private List<WallTypes> types;
+	@Column(name = "types")
+	@ElementCollection(fetch = FetchType.EAGER)
+	@Expose
+	private List<WallTypes> types;
 
-	@Column(name = "average_grade") @Expose private Grade averageGrade;
+	@Column(name = "average_grade")
+	@Expose
+	private Grade averageGrade;
 
-	@Column(name = "average_rating") @Expose private double averageRating;
+	@Column(name = "average_rating")
+	@Expose
+	private double averageRating;
 
 	public Route() {
 	}
